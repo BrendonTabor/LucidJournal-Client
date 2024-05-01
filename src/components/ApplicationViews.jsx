@@ -3,9 +3,8 @@ import { Authorized } from "./Authorized"
 import { Login } from "./auth/Login.jsx"
 import App from "../App.jsx"
 import { Register } from './auth/Register.jsx'
-import { GameForm } from "./Games/GameForm.jsx"
 import { EntryList } from "./entries/EntryList.jsx"
-import { GameDetails } from "./Games/GameDetails.jsx"
+import { EntryForm } from "./entries/EntryForm.jsx"
 
 
 export const ApplicationViews = () => {
@@ -16,8 +15,8 @@ export const ApplicationViews = () => {
             <Route path="/register" element={<Register />} />
             <Route element={<Authorized />}>
                 <Route path="/" element={<App />} />
-                <Route path="/entries"  element = {<EntryList />} />
-                <Route path="/entries/new" element = {<GameForm />} />
+                <Route path="/entries"  element ={<EntryList />} />
+                <Route path="/entries/new"  element ={<EntryForm />} />                
             </Route>
         </Routes>
     </BrowserRouter>
