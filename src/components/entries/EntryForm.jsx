@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-// import { CategoryCheckbox } from "../categories/CategoryCheckbox.jsx";
 import { useParams } from "react-router-dom";
-import { createEntry, updateEntry } from "../Services/entryService.jsx";
+import { createEntry, updateEntry, getEntry } from "../Services/entryService.jsx";
+import { SleepFactorCheckbox } from "../sleepfactors/sleepfactorcheckbox.jsx";
 
 export const EntryForm = () => {
     // const [categories, setCategories] = useState([])
@@ -11,20 +11,21 @@ export const EntryForm = () => {
         date_recorded: '',
         wake_method: 0,
         rem_count: 0,
+        sleepfactors: []
       });
     const { id } = useParams()
 
-    // useEffect(() => {
-    //     // get all Categories for checkboxes
-    //     if(id){
-    //         getGame(id).then((game) => {
-    //           delete game.user
-    //           delete game.id
-    //           game.categories = game.categories.map(category => category.id)
-    //           setFormData(game)
-    //         })
-    //     }
-    // }, [id])
+    useEffect(() => {
+        // get all the sleep factors involved with a dream
+        if(id){
+            getEntry(id).then((entry) => {
+              delete entry.user
+              delete entry.id
+              entry.sleepfactors = entry.sleepfactors.map(sleepfactor => sleepfactor.id)
+              setEntryData(entry)
+            })
+        }
+    }, [id])
 
       const handleChange = (e) => {
         setEntryData({
@@ -64,8 +65,7 @@ export const EntryForm = () => {
         <label htmlFor="rem_count">Rem count:</label>
         <input type="number" id="rem_count" name="rem_count" value={entryData.rem_count} onChange={handleChange} />
         </div>
-
-        {/* <CategoryCheckbox formData={formData} setFormData={setFormData}/> */}
+        <SleepFactorCheckbox entryData={entryData} setEntryData={setEntryData}/>
 
         <button type="button" onClick={handleSubmit}>
         Save Entry

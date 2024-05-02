@@ -16,9 +16,6 @@ export const EntryList = () => {
                 {entries.map((entry) => {
                     return <li key={entry.id}>
                         <Link to={`/entries/${entry.id}`}>{entry.title}</Link>
-
-                        {/* <GameDetails />
-                        <link to={`/games/${game.id}`}><GameDetails game={game} /> </link> */}
                     </li>
                 })}
             </ul>

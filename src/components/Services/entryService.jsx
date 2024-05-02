@@ -40,7 +40,7 @@ export const updateEntry = (id, entryObj) => {
     }.then((res) => res.json())
 }
 
-export const deleteGame = (id) => {
+export const deleteEntry = (id) => {
     return fetch(`http://localhost:8000/entries/${id}`, {
         method: "DELETE",
         headers: {
