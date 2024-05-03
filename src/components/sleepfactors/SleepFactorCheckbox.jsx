@@ -7,21 +7,21 @@ export const SleepFactorCheckbox = ({entryData, setEntryData}) => {
     const [sleepfactors, setSleepFactors] = useState([])
 
     useEffect(() => {
-        //retrieve the list of sleep factors
+        //retrieve the list of categories
         getSleepFactors().then(setSleepFactors)
     }, [entryData])
 
-    const handleCategoryChange = (sleepfactorId) => {
-          const isSelected = entryData.sleepfactors.includes(sleepfactorId)
+    const handleSleepFactorChange = (sleepfactorId) => {
+          const isSelected = entryData.dreamfactors.includes(sleepfactorId)
           if(isSelected){
               setEntryData({
                 ...entryData,
-                sleepfactors: entryData.sleepfactors.filter(id => id !== sleepfactorId)
+                dreamfactors: entryData.dreamfactors.filter(id => id !== sleepfactorId)
               })
           } else {
               setEntryData({
                 ...entryData,
-                sleepfactors: [...entryData.sleepfactors, sleepfactorId]
+                dreamfactors: [...entryData.dreamfactors, sleepfactorId]
               })
 
           }
@@ -30,14 +30,14 @@ export const SleepFactorCheckbox = ({entryData, setEntryData}) => {
 
       return (
         <div>
-          <label>Sleep Factors</label>
+          <label>Sleepfactors</label>
           {sleepfactors.map((sleepfactor) => (
             <div key={sleepfactor.id}>
               <label>
                 <input
                   type="checkbox"
-                  checked={entryData.sleepfactors.includes(sleepfactor.id)}
-                  onChange={() => handleCategoryChange(sleepfactor.id)}
+                  checked={entryData.dreamfactors.includes(sleepfactor.id)}
+                  onChange={() => handleSleepFactorChange(sleepfactor.id)}
                 />
                 {sleepfactor.label}
               </label>

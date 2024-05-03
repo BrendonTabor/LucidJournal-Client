@@ -18,8 +18,8 @@ export const ApplicationViews = () => {
                 <Route path="/" element={<App />} />
                 <Route path="/entries"  element ={<EntryList />} />
                 <Route path="/entries/new"  element ={<EntryForm />} />                
-                <Route path="/entries/:id"  element ={<EntryDetails />} />                
-                <Route path="/entries/:id/edit"  element ={<EntryForm />} />                
+                <Route path="/entries/:id" element={<EntryDetails />} />
+                <Route path="/entries/:id/edit" element={<EntryForm />} />             
             </Route>
         </Routes>
     </BrowserRouter>

@@ -4,7 +4,7 @@ function App() {
   return (
     <>
       <p className="read-the-docs">
-        Are you sure????
+        Welcome to lucid journal, here you can save your all you dream
       </p>
     </>
   )

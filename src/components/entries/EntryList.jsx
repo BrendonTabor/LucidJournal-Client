@@ -6,7 +6,7 @@ export const EntryList = () => {
     const [entries, setEntrees] = useState([])
 
     useEffect(() => {
-        //Fetch call to retrieve games, then using the .then method sets the games into games
+        //Fetch call to retrieve entries, then using the .then method sets the entries into entry
         getEntries().then(setEntrees) 
     }, [])
 
@@ -15,7 +15,8 @@ export const EntryList = () => {
             <ul>
                 {entries.map((entry) => {
                     return <li key={entry.id}>
-                        <Link to={`/entries/${entry.id}`}>{entry.title}</Link>
+                        <h1><Link to={`/entries/${entry.id}`}>{entry.title}</Link></h1>
+                        <h2>{entry.description}</h2>
                     </li>
                 })}
             </ul>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, Navigate, useFetcher, useNavigate, useParams } from "react-router-dom";
 import { getCurrentUser } from "../Services/userService.jsx"
-import { getEntry, deleteEntry, updateEntry } from "../Services/entryService.jsx";
+import { getEntry, deleteEntry } from "../Services/entryService.jsx";
 
 
 export const EntryDetails = () => {
@@ -37,21 +37,31 @@ export const EntryDetails = () => {
     <div className="details">
       <strong>Description</strong> {entry.description}
     </div>
-    <div className="dreamfactors">
-      <strong>Sleepfactors:</strong>
+    {entry.wake_method && (
+        <div className="details">
+          <strong>Wake Method</strong> {entry.wake_method.label}
+        </div>
+      )}
+      {entry.rem_count && (
+        <div className="details">
+          <strong>REM Count</strong> {entry.rem_count.cycles_completed}
+        </div>
+      )}
+    <div className="sleepfactors">
+      <strong>Dream factors:</strong>
       <ul>
         {entry.dreamfactors
-          ? entry.dreamfactors.map((sleepfactor) => (
-              <li key={sleepfactor.id}>{sleepfactor.label}</li>
+          ? entry.dreamfactors.map((dreamfactor) => (
+              <li key={dreamfactor.id}>{dreamfactor.label}</li>
             ))
           : <></>}
       </ul>
     </div>
     <div className="buttons">
       <button type="button">
-            <Link to={`/entries/${entry.id}/edit`}>Edit Game</Link>
+            <Link to={`/entries/${entry.id}/edit`}>Edit Entry</Link>
           </button>
-      <button type="button" onClick={handleDelete}>Delete Game</button>
+      <button type="button" onClick={handleDelete}>Delete Entry</button>
     </div>
   </div>
   </>;
